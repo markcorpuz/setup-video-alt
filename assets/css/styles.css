@@ -1,0 +1,130 @@
+/*
+ Default styles for video entries
+ */
+
+.item-videoentry {}
+
+.item-video {
+	position: relative;
+	cursor: pointer;
+}
+	.item-video img.item-thumbnail-img {}
+
+	.item-video .item-play-icon {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		width: 68px;
+		height: 48px;
+		margin-left: -34px;
+		margin-top: -24px;
+	}
+
+	.item-video button.item-video-button {
+		background: #000;
+		padding: 0;
+		display: flex;
+		cursor: pointer;
+	}
+	.item-video button.item-video-button:hover {
+		background: #333;
+	}
+
+	.item-video button.item-video-button .play-icon-tv {
+		-webkit-transition: fill .1s cubic-bezier(0.4,0,1,1),fill-opacity .1s cubic-bezier(0.4,0,1,1);
+		transition: fill .1s cubic-bezier(0.4,0,1,1),fill-opacity .1s cubic-bezier(0.4,0,1,1);
+		fill: #212121;
+		fill-opacity: .8;
+	}
+	.item-video button.item-video-button:hover .play-icon-tv {
+		-webkit-transition: fill .1s cubic-bezier(0,0,0.2,1),fill-opacity .1s cubic-bezier(0,0,0.2,1);
+		transition: fill .1s cubic-bezier(0,0,0.2,1),fill-opacity .1s cubic-bezier(0,0,0.2,1);
+		fill: #f00;
+		fill-opacity: 1;
+	}
+
+/*
+set-fbfloat - makes the existing video look like facebook entries
+ */
+
+.set-fbfloat {
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+	padding: 0.5rem 0;
+	background-color: #fff;
+	border-radius: 0.5rem;
+	max-width: 640px;
+	margin-left: auto;
+	margin-right: auto;
+}
+	.set-fbfloat .item-title {
+		margin: 0 1rem 0.5rem;
+	}
+	.set-fbfloat .item-summary {
+		margin: 0.5rem 1rem 0;
+	}
+	.set-fbfloat .item-summary p {
+		margin-bottom: 0.5rem;
+	}
+	.set-fbfloat .item-summary p:last-child {
+		margin-bottom: 0;
+	}
+	.set-fbfloat .item-credit {
+		margin: 0.5rem 1rem 0;	
+	}
+	.set-fbfloat .item-video {
+		position: relative;
+	}
+
+/*
+set-linktype - displaying videos into links
+ */
+
+.set-linktype {}
+	.set-linktype .item-title {}
+	.set-linktype .item-summary {}
+	.set-linktype .item-summary p {}
+	.set-linktype .item-summary p:last-child {
+		margin-bottom: 0;
+	}
+	.set-linktype .item-credit {}
+	.set-linktype .item-video {}
+	
+	.set-linktype.item-videoentry {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		grid-column-gap: 0.5rem;
+		align-items: center;
+	}
+	.set-linktype.item-videoentry .item-icon {
+		width: 15px;
+		height: 15px;
+		background-size: contain;
+	}
+	.set-linktype.item-videoentry .item-icon {
+		background-image: url("/wp-content/plugins/setup-video/assets/icons/video.svg");
+		background-repeat: no-repeat;
+		background-size: 15px;
+	}
+
+
+/*
+Not sure what this is
+ */
+
+.embed-container { 
+	position: relative; 
+	padding-bottom: 56.25%;
+	overflow: hidden;
+	max-width: 100%;
+	height: auto;
+}
+
+.embed-container iframe,
+.embed-container object,
+.embed-container embed { 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
