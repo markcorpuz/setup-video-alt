@@ -183,6 +183,22 @@ class SetupVideoACF extends SetupVideoStructure {
                     'jsx'               => true,
                 ],
             ),
+            
+            'setup_videos_2_timestamps' => array(
+              'name'                  => 'setup_videos_2_timestamp',
+              'title'                 => __('Videos - Timestamp'),
+              'render_template'       => $this->setup_plugin_dir_path().'templates/blocks/block-videos-vbt.php',
+              'category'              => 'setup',
+              'icon'                  => 'video-alt3',
+              'mode'                  => 'edit',
+              'keywords'              => array( 'video', 'videos' ),
+              'supports'              => [
+                  'align'             => false,
+                  'anchor'            => true,
+                  'customClassName'   => true,
+                  'jsx'               => true,
+              ],
+          ),
 
         );
 
@@ -208,6 +224,8 @@ class SetupVideoACF extends SetupVideoStructure {
         add_filter( 'acf/load_field/name=video-template-vbs', array( $this, 'acf_setup_video_entry_template' ) );
         add_filter( 'acf/load_field/name=video-template-global-vbm', array( $this, 'acf_setup_video_entry_template' ) );
         add_filter( 'acf/load_field/name=video-template-vbm', array( $this, 'acf_setup_video_entry_template' ) );
+        add_filter( 'acf/load_field/name=video-template-global-vbt', array( $this, 'acf_setup_video_entry_template' ) );
+        add_filter( 'acf/load_field/name=video-template-vbt', array( $this, 'acf_setup_video_entry_template' ) );
 
         // thumbnail sizes
         //add_filter( 'acf/load_field/name=video-thumb-size', array( $this, 'acf_setup_image_sizes' ) );
