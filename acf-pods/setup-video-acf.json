@@ -1693,7 +1693,8 @@
               "id": ""
             },
             "choices": {
-              "default.php": "default"
+              "default.php": "default",
+              "timestamp-exclude-title-summary.php": "timestamp-exclude-title-summary"
             },
             "default_value": false,
             "allow_null": 0,

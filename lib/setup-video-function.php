@@ -286,7 +286,16 @@ class SetupVideoFunc {
               $vars[ 'summary' ] = get_field( 'video-summary'.$acf_group );
               $vars[ 'video_wrap_sel' ] = get_field( 'video-section-class'.$acf_group );
               $vars[ 'video_wrap_sty' ] = get_field( 'video-section-style'.$acf_group );
-              $vars['video-timestamps'] = get_field( 'video-timestamps'.$acf_group );
+
+              //Video Timestamp
+              $video_timestamp = get_field( 'video-timestamps'.$acf_group );
+              if( !empty( $video_timestamp ) ) {
+                  $vars['video-timestamps'] = get_field( 'video-timestamps'.$acf_group );
+              } else {
+                  $vars['video-timestamps'] = '';
+              }
+
+             
               // video counter
               //$this->vid_counter++;
               //$vars[ 'counts' ] = $this->vid_counter; // templates use this variable
