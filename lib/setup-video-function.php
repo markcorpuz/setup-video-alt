@@ -69,41 +69,6 @@ class SetupVideoFunc {
 
         }
 
-           // ***********************************
-        // * VIDEO TIMESTAMP
-        // ***********************************
-        if( !empty( $acf_group ) && $acf_group == '-vbt' ) {
-            
-          if( get_field( 'video-exclude'.$acf_group ) === FALSE ) {
-              
-              $oembeds_io = get_field( 'video-oembeds'.$acf_group );
-              if( !empty( $oembeds_io ) ) {
-                  $vars[ 'oembed' ] = $oembeds_io;
-                  $vars[ 'video_id' ] = $this->setup_youtube_id_regex( $oembeds_io );
-              } else {
-                  $vars[ 'oembed' ] = '';
-                  $vars[ 'video_id' ] = '';
-              }
-
-              $vars[ 'thumbnail' ] = get_field( 'video-thumbnail'.$acf_group );
-              $vars[ 'video_url' ] = get_field( 'video-url'.$acf_group );
-              $vars[ 'title' ] = get_field( 'video-title'.$acf_group );
-              $vars[ 'credits' ] = get_field( 'video-credit'.$acf_group );
-              $vars[ 'summary' ] = get_field( 'video-summary'.$acf_group );
-              $vars[ 'video_wrap_sel' ] = get_field( 'video-section-class'.$acf_group );
-              $vars[ 'video_wrap_sty' ] = get_field( 'video-section-style'.$acf_group );
-
-              // video counter
-              //$this->vid_counter++;
-              //$vars[ 'counts' ] = $this->vid_counter; // templates use this variable
-              $gcounter++;
-              $vars[ 'counts' ] = $gcounter;
-
-             $echo_this .= $this->setup_pull_view_template( get_field( 'video-template'.$acf_group ), 'video-entry' );
-
-          }
-
-      }
 
         // ***********************************
         // * PULL
@@ -321,7 +286,7 @@ class SetupVideoFunc {
               $vars[ 'summary' ] = get_field( 'video-summary'.$acf_group );
               $vars[ 'video_wrap_sel' ] = get_field( 'video-section-class'.$acf_group );
               $vars[ 'video_wrap_sty' ] = get_field( 'video-section-style'.$acf_group );
-
+              $vars['video-timestamps'] = get_field( 'video-timestamps'.$acf_group );
               // video counter
               //$this->vid_counter++;
               //$vars[ 'counts' ] = $this->vid_counter; // templates use this variable

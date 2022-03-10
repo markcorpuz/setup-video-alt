@@ -19,7 +19,6 @@ if( !empty( $cont_style ) || !empty( $styles ) ) {
 } else {
 	$inline_style = '';
 }
-
 // WRAP | OPEN
 echo '<div class="item-videoentry'.$cont_class.'"'.$inline_style.'>';
 
@@ -70,7 +69,23 @@ echo '<div class="item-videoentry'.$cont_class.'"'.$inline_style.'>';
 	$summary = $arr->setup_array_validation( 'summary', $vars );
 	if( !empty( $summary ) ) :
 		echo '<div class="item-summary textsize-sm">'.$summary.'</div>';
-	endif;
+  endif;
+  
+//show video timestamp if present
+  $video_timestamps = $arr->setup_array_validation( 'video-timestamps', $vars );
+  if($video_timestamps) :
+      foreach( $video_timestamps as $video_timestamp) :
+          $start_time = $video_timestamp['start-time'];
+          $end_time = $video_timestamp['end-time'];
+          $summary = $video_timestamp['summary'];
+          $title = $video_timestamp['title'];
+          echo'<h2 class="title" style="margin:1.25rem 0;">'. $title.'</h2>';  
+          echo'<p class="summary" style="margin:1.25rem 0;">Summary: '. $summary.'</p>';   
+          echo'<div class="start-time">Start Time: <a href="'.$start_time.'">'. $start_time.'</a></div>';    
+          echo'<div class="end-time">End Time: <a href="'.$end_time.'">'. $end_time.'</a></div>';    
+      endforeach;
+  endif;
+
 
 	$credits = $arr->setup_array_validation( 'credits', $vars );
 	$video_url = $arr->setup_array_validation( 'video_url', $vars );

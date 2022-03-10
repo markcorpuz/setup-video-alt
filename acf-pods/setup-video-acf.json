@@ -1569,9 +1569,25 @@
         "delay": 0
       },
       {
+        "key": "field_6226d58e8fbea",
+        "label": "Time",
+        "name": "",
+        "type": "tab",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "placement": "top",
+        "endpoint": 0
+      },
+      {
         "key": "field_6226004628262",
-        "label": "Timestamp",
-        "name": "timestamp-vbt",
+        "label": "Timestamps",
+        "name": "video-timestamps-vbt",
         "type": "repeater",
         "instructions": "",
         "required": 0,
@@ -1588,9 +1604,47 @@
         "button_label": "",
         "sub_fields": [
           {
+            "key": "field_6229d60c92c53",
+            "label": "Title",
+            "name": "title",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+              "width": "",
+              "class": "",
+              "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+          },
+          {
+            "key": "field_6226dd7911c28",
+            "label": "Summary",
+            "name": "summary",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+              "width": "",
+              "class": "",
+              "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+          },
+          {
             "key": "field_622600a987b45",
             "label": "Start Time",
-            "name": "start-time-vbt",
+            "name": "start-time",
             "type": "text",
             "instructions": "",
             "required": 0,
@@ -1609,7 +1663,7 @@
           {
             "key": "field_62260215518fe",
             "label": "End Time",
-            "name": "end-time-vbt",
+            "name": "end-time",
             "type": "text",
             "instructions": "",
             "required": 0,
@@ -1626,10 +1680,10 @@
             "maxlength": ""
           },
           {
-            "key": "field_62260295745dc",
-            "label": "Video URL",
-            "name": "video-url-vbt",
-            "type": "text",
+            "key": "field_6226dd06fe706",
+            "label": "Template",
+            "name": "template",
+            "type": "select",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -1638,30 +1692,16 @@
               "class": "",
               "id": ""
             },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-          },
-          {
-            "key": "field_62260321b31c9",
-            "label": "Video Title",
-            "name": "video-title-vbt",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-              "width": "",
-              "class": "",
-              "id": ""
+            "choices": {
+              "default.php": "default"
             },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
+            "default_value": false,
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
           }
         ]
       },
