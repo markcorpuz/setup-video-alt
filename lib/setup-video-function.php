@@ -286,37 +286,36 @@ class SetupVideoFunc {
               $vars[ 'summary' ] = get_field( 'video-summary'.$acf_group );
               $vars[ 'video_wrap_sel' ] = get_field( 'video-section-class'.$acf_group );
               $vars[ 'video_wrap_sty' ] = get_field( 'video-section-style'.$acf_group );
-
+              $vars[ 'override_global_template' ] = get_field( 'override-global-template-vbt'.$acf_group );
               //Video Timestamp
               $video_timestamps = get_field( 'video-timestamps'.$acf_group );
-              if( !empty( $video_timestamps ) ) {
+             var_dump( $vars[ 'override_global_template' ]);
+             //set global
+             if($vars[ 'override_global_template' ] != NULL) {
+              $echo_this .= $this->setup_pull_view_template( get_field( 'video-template'.$acf_group ), 'video-timestamp' );
+             } else {
+              $echo_this .= $this->setup_pull_view_template( get_field( 'video-template'.$acf_group ), 'video-timestamp/override' );
+             }
+              // if( !empty( $video_timestamps ) ) {
           
-                  // echo'<pre>';
-                  // var_dump( $video_timestamps);
-                  // echo'</pre>';
-             
-              foreach($video_timestamps as $video_timestamp) {
-                  $start_time = $video_timestamp['start-time'];
-                  $end_time = $video_timestamp['end-time'];
-                  $summary = $video_timestamp['summary'];
-                  $title = $video_timestamp['title'];
-                  $template = $video_timestamp['template'];
+              //     // echo'<pre>';
+              //     // var_dump( $video_timestamps);
+              //     // echo'</pre>';
+     
+              //     //default timestamp
+              //     //echo $vars[ 'override-global-template-vbt' ];
+              //     if($template == get_field( 'override-global-template-vbt'.$acf_group )){
+              //       $gtempate = get_field( 'video-template-global'.$acf_group );
+              //       echo 'default';
+              //       $echo_this .= $this->setup_pull_view_template( get_field( 'video-template'.$acf_group ), 'video-timestamp' );
+              //      }  else {
+              //        echo 'override';
+              //       $echo_this .= $this->setup_pull_view_template( get_field( 'video-template'.$acf_group ), 'video-timestamp/override' );
+              //      }        
 
-                  //default timestamp
-                  if($template ==  get_field( 'video-template'.$acf_group)){
-                    $gtempate = get_field( 'video-template-global'.$acf_group );
-                    echo  $gtempate;
-                   $echo_this .= $this->setup_pull_view_template( get_field( 'video-template'.$acf_group ), 'video-timestamp' );
-                   }
-                   if($template ==  get_field( 'video-template'.$acf_group)){
-                    $echo_this .= $this->setup_pull_view_template( get_field( 'video-template'.$acf_group ), 'video-timestamp/timestamp-entry' );
-                  }
-
-              }
-
-              } else {
-                  $vars['video-timestamps'] = '';
-              } 
+              // } else {
+              //     $vars['video-timestamps'] = '';
+              // } 
               // video counter
               //$this->vid_counter++;
               //$vars[ 'counts' ] = $this->vid_counter; // templates use this variable
@@ -376,8 +375,9 @@ class SetupVideoFunc {
     public function setup_pull_view_template( $layout, $dir_ext ) {
 
         $o = new SetupVideoStructure();
-
+      
         $layout_file = $o->setup_plugin_dir_path().'templates/'.$dir_ext.'/'.$layout;
+        var_dump( $layout_file );
         if( is_file( $layout_file ) ) {
 
             ob_start();

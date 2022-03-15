@@ -1694,7 +1694,7 @@
             },
             "choices": {
               "default.php": "default",
-              "timestamp-exclude-title-summary.php": "timestamp-exclude-title-summary"
+              "video-timestamp-entry.php": "video-timestamp-entry"
             },
             "default_value": false,
             "allow_null": 0,
@@ -1723,10 +1723,10 @@
         "endpoint": 0
       },
       {
-        "key": "field_6225f14e45c78",
-        "label": "Template",
-        "name": "video-template-vbt",
-        "type": "select",
+        "key": "field_6230a170a6dff",
+        "label": "Override Global Template",
+        "name": "override-global-template-vbt",
+        "type": "true_false",
         "instructions": "",
         "required": 0,
         "conditional_logic": 0,
@@ -1735,16 +1735,35 @@
           "class": "",
           "id": ""
         },
+        "message": "",
+        "default_value": 0,
+        "ui": 0,
+        "ui_on_text": "",
+        "ui_off_text": ""
+      },
+      {
+        "key": "field_62309b81d0695",
+        "label": "Template",
+        "name": "video-template-vbt",
+        "type": "select",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": [
+          [
+            {
+              "field": "field_6230a170a6dff",
+              "operator": "!=",
+              "value": "1"
+            }
+          ]
+        ],
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
         "choices": {
-          "default.php": "default",
-          "set-fbfloat.php": "set-fbfloat",
-          "set-linktype-oembed.php": "set-linktype-oembed",
-          "set-linktype-title.php": "set-linktype-title",
-          "set-linktype-url.php": "set-linktype-url",
-          "set-timestamp.php": "set-timestamp",
-          "sub-box-fbfloat.php": "sub-box-fbfloat",
-          "sub-video-extra.php": "sub-video-extra",
-          "sub-video.php": "sub-video"
+          "default.php": "default"
         },
         "default_value": false,
         "allow_null": 0,
