@@ -19,7 +19,6 @@ if( !empty( $cont_style ) || !empty( $styles ) ) {
 } else {
 	$inline_style = '';
 }
-
 // WRAP | OPEN
 echo '<div class="item-videoentry'.$cont_class.'"'.$inline_style.'>';
 
@@ -70,30 +69,8 @@ echo '<div class="item-videoentry'.$cont_class.'"'.$inline_style.'>';
 	$summary = $arr->setup_array_validation( 'summary', $vars );
 	if( !empty( $summary ) ) :
 		echo '<div class="item-summary textsize-sm">'.$summary.'</div>';
-	endif;
-
-	$credits = $arr->setup_array_validation( 'credits', $vars );
-	$video_url = $arr->setup_array_validation( 'video_url', $vars );
-	if( !empty( $credits ) && !empty( $video_url ) ) :
-
-		echo '<div class="item-credit textsize-sm">Source: <a href="'.$video_url.'" target="_blank">'.$credits.'</a></div>';
-
-	else:
-
-		// show credits only - no video_url
-		if( !empty( $credits ) && empty( $video_url ) ) :
-			echo '<div class="item-credit textsize-sm">Source: '.$credits.'</div>';
-		endif;
-
-		// show video_url only - no credits
-		if( empty( $credits ) && !empty( $video_url ) ) :
-			echo '<div class="item-credit textsize-sm">Source: <a class="item-url" href="'.$video_url.'" target="_blank">'.$video_url.'</a></div>';
-		endif;
-
-	endif;
-
-	echo '<input type="'.$arr->setup_array_validation( 'input_type', $vars ).'" id="vtype__'.$vars[ 'counts' ].'" value="youtube" />';
-	echo '<input type="'.$arr->setup_array_validation( 'input_type', $vars ).'" id="vidid__'.$vars[ 'counts' ].'" value="'.$arr->setup_array_validation( 'video_id', $vars ).'" />';
+  endif;
+echo 'timestamp-entry here';
 
 // WRAP | CLOSE
 echo '</div>';
