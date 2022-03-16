@@ -32,6 +32,7 @@ class SetupVideoFunc {
         $echo_this = '';
 
         $global_template = get_field( 'video-template-global'.$acf_group );
+     
 
         // ***********************************
         // * SINGLE
@@ -267,7 +268,8 @@ class SetupVideoFunc {
         // * VIDEO TIMESTAMP
         // ***********************************
         if( !empty( $acf_group ) && $acf_group == '-vbt' ) {
-
+        // get global template
+        $gtempate = get_field( 'video-template-global'.$acf_group );
           if( get_field( 'video-exclude'.$acf_group ) === FALSE ) {
               
               $oembeds_io = get_field( 'video-oembeds'.$acf_group );
@@ -286,44 +288,35 @@ class SetupVideoFunc {
               $vars[ 'summary' ] = get_field( 'video-summary'.$acf_group );
               $vars[ 'video_wrap_sel' ] = get_field( 'video-section-class'.$acf_group );
               $vars[ 'video_wrap_sty' ] = get_field( 'video-section-style'.$acf_group );
-              $vars[ 'override_global_template' ] = get_field( 'override-global-template-vbt'.$acf_group );
-              //Video Timestamp
-              $video_timestamps = get_field( 'video-timestamps'.$acf_group );
-             var_dump( $vars[ 'override_global_template' ]);
-             //set global
-             if($vars[ 'override_global_template' ] != NULL) {
-              $echo_this .= $this->setup_pull_view_template( get_field( 'video-template'.$acf_group ), 'video-timestamp' );
-             } else {
-              $echo_this .= $this->setup_pull_view_template( get_field( 'video-template'.$acf_group ), 'video-timestamp/override' );
-             }
-              // if( !empty( $video_timestamps ) ) {
-          
-              //     // echo'<pre>';
-              //     // var_dump( $video_timestamps);
-              //     // echo'</pre>';
-     
-              //     //default timestamp
-              //     //echo $vars[ 'override-global-template-vbt' ];
-              //     if($template == get_field( 'override-global-template-vbt'.$acf_group )){
-              //       $gtempate = get_field( 'video-template-global'.$acf_group );
-              //       echo 'default';
-              //       $echo_this .= $this->setup_pull_view_template( get_field( 'video-template'.$acf_group ), 'video-timestamp' );
-              //      }  else {
-              //        echo 'override';
-              //       $echo_this .= $this->setup_pull_view_template( get_field( 'video-template'.$acf_group ), 'video-timestamp/override' );
-              //      }        
+              $vars[ 'video_timestamps' ] = get_field( 'video-timestamps'.$acf_group );
+              
+              if($gtempate != 'default.php') {
+                $out = '';
+                foreach($vars[ 'video_timestamps' ] as $video_timestamp) {
+                  $template = $video_timestamp['template'];
 
-              // } else {
-              //     $vars['video-timestamps'] = '';
-              // } 
+                  if( $template === 'default.php') {
+                    $temp_actual = $tempate;
+                  } else {
+                    $temp_actual = $gtemplate;
+                  }
+                  echo $temp_actual;
+                  $out .= $this->setup_pull_view_template( $temp_actual, 'video-timestamp' );
+                }
+              }
+               $echo_this .= $out;
+              
+         
+
               // video counter
               //$this->vid_counter++;
               //$vars[ 'counts' ] = $this->vid_counter; // templates use this variable
               $gcounter++;
               $vars[ 'counts' ] = $gcounter;
 
-             // $echo_this  .= $this->setup_pull_view_template( get_field( 'video-template'.$acf_group ), 'video-timestamp' );
-            // $echo_this .= $this->setup_pull_view_template( get_field( 'video-template'.$acf_group ), 'video-timestamp' );
+          
+             $echo_this  .= $this->setup_pull_view_template( get_field( 'video-template'.$acf_group ), 'video-timestamp' );
+
 
           }
 
@@ -375,9 +368,8 @@ class SetupVideoFunc {
     public function setup_pull_view_template( $layout, $dir_ext ) {
 
         $o = new SetupVideoStructure();
-      
+
         $layout_file = $o->setup_plugin_dir_path().'templates/'.$dir_ext.'/'.$layout;
-        var_dump( $layout_file );
         if( is_file( $layout_file ) ) {
 
             ob_start();

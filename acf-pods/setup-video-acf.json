@@ -1694,7 +1694,8 @@
             },
             "choices": {
               "default.php": "default",
-              "video-timestamp-entry.php": "video-timestamp-entry"
+              "set-videofloat.php": "set-videofloat",
+              "set-video-timestamp-hide-title.php": "set-video-timestamp-hide-title"
             },
             "default_value": false,
             "allow_null": 0,
@@ -1723,10 +1724,10 @@
         "endpoint": 0
       },
       {
-        "key": "field_6230a170a6dff",
-        "label": "Override Global Template",
-        "name": "override-global-template-vbt",
-        "type": "true_false",
+        "key": "field_62309b81d0695",
+        "label": "Template",
+        "name": "video-template-global-vbt",
+        "type": "select",
         "instructions": "",
         "required": 0,
         "conditional_logic": 0,
@@ -1735,35 +1736,10 @@
           "class": "",
           "id": ""
         },
-        "message": "",
-        "default_value": 0,
-        "ui": 0,
-        "ui_on_text": "",
-        "ui_off_text": ""
-      },
-      {
-        "key": "field_62309b81d0695",
-        "label": "Template",
-        "name": "video-template-vbt",
-        "type": "select",
-        "instructions": "",
-        "required": 0,
-        "conditional_logic": [
-          [
-            {
-              "field": "field_6230a170a6dff",
-              "operator": "!=",
-              "value": "1"
-            }
-          ]
-        ],
-        "wrapper": {
-          "width": "",
-          "class": "",
-          "id": ""
-        },
         "choices": {
-          "default.php": "default"
+          "default.php": "default",
+          "set-video-timestamp-hide-title.php": "set-video-timestamp-hide-title",
+          "set-videofloat.php": "set-videofloat"
         },
         "default_value": false,
         "allow_null": 0,

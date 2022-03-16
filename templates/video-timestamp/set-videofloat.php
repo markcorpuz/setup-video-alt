@@ -19,8 +19,14 @@ if( !empty( $cont_style ) || !empty( $styles ) ) {
 } else {
 	$inline_style = '';
 }
+
 // WRAP | OPEN
-echo '<div class="item-videoentry'.$cont_class.'"'.$inline_style.'>';
+echo '<div class="item-videoentry set-videofloat'.$cont_class.'"'.$inline_style.'>';
+	
+	$title = $arr->setup_array_validation( 'title', $vars );
+	if( !empty( $title ) ) :
+		echo '<div class="item-title textsize-xl">'.$title.'</div>';
+	endif;
 
 	$oembed = $arr->setup_array_validation( 'oembed', $vars );
 	if( !empty( $oembed ) ) {
@@ -50,26 +56,6 @@ echo '<div class="item-videoentry'.$cont_class.'"'.$inline_style.'>';
 		endif;
 
 	}
-	/*
-	$oembed = $arr->setup_array_validation( 'oembed', $vars );
-	if( !empty( $oembed ) ) {
-		echo '<div class="item-oembed">'.$oembed.'</div>';
-	}
-	
-	$thumbnail = $arr->setup_array_validation( 'thumbnail', $vars );
-	if( !empty( $thumbnail ) ) :
-		echo '<div class="item-thumbnail">'.wp_get_attachment_image( $thumbnail, $arr->setup_array_validation( 'def_thumb_size', $vars ) ).'</div>';
-	endif;*/
-// var_dump($arr->setup_array_validation( 'timestamp_repeater', $vars ));
-	$title = $arr->setup_array_validation( 'title', $vars );
-	if( !empty( $title ) ) :
-		echo '<div class="item-title textsize-xl">'.$title.'</div>';
-	endif;
-
-	$summary = $arr->setup_array_validation( 'summary', $vars );
-	if( !empty( $summary ) ) :
-		echo '<div class="item-summary textsize-sm">'.$summary.'</div>';
-  endif;
 
 //show video timestamp if present
 $video_timestamps = $arr->setup_array_validation( 'video_timestamps', $vars );
@@ -81,6 +67,8 @@ if($video_timestamps) :
       $summary = $video_timestamp['summary'];
       $title = $video_timestamp['title'];
       $template = $video_timestamp['template'];
+      echo 'videofloat';
+
           if($title):
             echo'<h2 class="title" style="margin:1.25rem 0;">'. $title.'</h2>';  
           endif;
@@ -92,10 +80,16 @@ if($video_timestamps) :
           endif;  
           if($end_time):
             echo'<div class="end-time">End Time: <a href="'.$end_time.'">'. $end_time.'</a></div>'; 
-          endif; 
+          endif;
+    
+   
   endforeach;
 endif;
 
+	$summary = $arr->setup_array_validation( 'summary', $vars );
+	if( !empty( $summary ) ) :
+		echo '<div class="item-summary textsize-sm">'.$summary.'</div>';
+	endif;
 
 	$credits = $arr->setup_array_validation( 'credits', $vars );
 	$video_url = $arr->setup_array_validation( 'video_url', $vars );
@@ -112,13 +106,13 @@ endif;
 
 		// show video_url only - no credits
 		if( empty( $credits ) && !empty( $video_url ) ) :
-			echo '<div class="item-credit textsize-sm">Source: <a class="item-url" href="'.$video_url.'" target="_blank">'.$video_url.'</a></div>';
+			echo '<div class="item-credit textsize-sm">Source: <a class="item-url" href="'.$video_url.'" target="_blank">Link</a></div>';
 		endif;
 
 	endif;
 
-	echo '<input type="'.$arr->setup_array_validation( 'input_type', $vars ).'" id="vtype__'.$vars[ 'counts' ].'" value="youtube" />';
-	echo '<input type="'.$arr->setup_array_validation( 'input_type', $vars ).'" id="vidid__'.$vars[ 'counts' ].'" value="'.$arr->setup_array_validation( 'video_id', $vars ).'" />';
+    echo '<input type="'.$arr->setup_array_validation( 'input_type', $vars ).'" id="vtype__'.$vars[ 'counts' ].'" value="youtube" />';
+    echo '<input type="'.$arr->setup_array_validation( 'input_type', $vars ).'" id="vidid__'.$vars[ 'counts' ].'" value="'.$arr->setup_array_validation( 'video_id', $vars ).'" />';
 
 // WRAP | CLOSE
 echo '</div>';
