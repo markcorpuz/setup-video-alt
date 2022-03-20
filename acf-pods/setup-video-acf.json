@@ -1694,8 +1694,7 @@
             },
             "choices": {
               "default.php": "default",
-              "set-videofloat.php": "set-videofloat",
-              "set-video-timestamp-hide-title.php": "set-video-timestamp-hide-title"
+              "set-videofloat.php": "set-videofloat"
             },
             "default_value": false,
             "allow_null": 0,
@@ -1726,7 +1725,7 @@
       {
         "key": "field_62309b81d0695",
         "label": "Template",
-        "name": "video-template-global-vbt",
+        "name": "video-template-vbt",
         "type": "select",
         "instructions": "",
         "required": 0,
@@ -1738,7 +1737,6 @@
         },
         "choices": {
           "default.php": "default",
-          "set-video-timestamp-hide-title.php": "set-video-timestamp-hide-title",
           "set-videofloat.php": "set-videofloat"
         },
         "default_value": false,

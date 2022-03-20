@@ -73,7 +73,6 @@ echo '<div class="item-videoentry'.$cont_class.'"'.$inline_style.'>';
 
 //show video timestamp if present
 $video_timestamps = $arr->setup_array_validation( 'video_timestamps', $vars );
-
 if($video_timestamps) :
   foreach($video_timestamps as $video_timestamp) :
       $start_time = $video_timestamp['start-time'];

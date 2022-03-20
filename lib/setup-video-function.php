@@ -167,6 +167,7 @@ class SetupVideoFunc {
             $gtempate = get_field( 'video-template-global'.$acf_group );
 
             $vflex = get_field( 'video-flex'.$acf_group );
+
             foreach( $vflex as $ventries ) {
                 //var_dump( $ventries );
                 
@@ -214,6 +215,7 @@ class SetupVideoFunc {
                 if( $vormat == 'vbm-pull' && empty( $ventries[ 'video-exclude'.$acf_group ] ) ) {
 
                     $ventry = $ventries[ 'video-entries'.$acf_group ];
+
                     if( is_array( $ventry ) ) {
 
                         //$echo_this .= $this->setup_process_pull_entries( $ventry, $acf_group );
@@ -250,7 +252,6 @@ class SetupVideoFunc {
                             } else {
                                 $temp_actual = $gtempate;
                             }
-                            
                             $out .= $this->setup_pull_view_template( $temp_actual, 'video-entry' );
 
                         }
@@ -269,7 +270,8 @@ class SetupVideoFunc {
         // ***********************************
         if( !empty( $acf_group ) && $acf_group == '-vbt' ) {
         // get global template
-        $gtempate = get_field( 'video-template-global'.$acf_group );
+        $vtempate = get_field( 'video-template'.$acf_group );
+     
           if( get_field( 'video-exclude'.$acf_group ) === FALSE ) {
               
               $oembeds_io = get_field( 'video-oembeds'.$acf_group );
@@ -289,35 +291,30 @@ class SetupVideoFunc {
               $vars[ 'video_wrap_sel' ] = get_field( 'video-section-class'.$acf_group );
               $vars[ 'video_wrap_sty' ] = get_field( 'video-section-style'.$acf_group );
               $vars[ 'video_timestamps' ] = get_field( 'video-timestamps'.$acf_group );
-              
-              if($gtempate != 'default.php') {
-                $out = '';
-                foreach($vars[ 'video_timestamps' ] as $video_timestamp) {
-                  $template = $video_timestamp['template'];
 
-                  if( $template === 'default.php') {
-                    $temp_actual = $tempate;
-                  } else {
-                    $temp_actual = $gtemplate;
-                  }
-                  echo $temp_actual;
-                  $out .= $this->setup_pull_view_template( $temp_actual, 'video-timestamp' );
+              $video_timestamps = get_field( 'video-timestamps'.$acf_group );
+
+              $out = '';
+              if( is_array( $video_timestamps ) ) {
+                foreach($video_timestamps as $video_timestamp) {
+                $start_time = $video_timestamp['start-time'];
+                $end_time = $video_timestamp['end-time'];
+                $summary = $video_timestamp['summary'];
+                $title = $video_timestamp['title'];
+                $template = $video_timestamp['template'];
+
+                $gcounter++;
+                $vars[ 'counts' ] = $gcounter;  
+                // template
+                if( $template === 'default.php' ) {
+                    $temp_actual = get_field( 'video-template'.$acf_group );
+                } else {
+                    $temp_actual = $gtempate;
                 }
+                $out .= $this->setup_pull_view_template( $temp_actual, 'video-timestamp' );
+                }
+                $echo_this .= $out;
               }
-               $echo_this .= $out;
-              
-         
-
-              // video counter
-              //$this->vid_counter++;
-              //$vars[ 'counts' ] = $this->vid_counter; // templates use this variable
-              $gcounter++;
-              $vars[ 'counts' ] = $gcounter;
-
-          
-             $echo_this  .= $this->setup_pull_view_template( get_field( 'video-template'.$acf_group ), 'video-timestamp' );
-
-
           }
 
       }
@@ -370,6 +367,7 @@ class SetupVideoFunc {
         $o = new SetupVideoStructure();
 
         $layout_file = $o->setup_plugin_dir_path().'templates/'.$dir_ext.'/'.$layout;
+        //var_dump($layout_file);
         if( is_file( $layout_file ) ) {
 
             ob_start();
